@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/08/30 18:51:43 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/05 15:19:48 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@
 #include <readline/history.h>
 # include "../libft/libft.h"
 
+// COLORS //
+#define RESET_COLOR     "\033[0m"
+#define RED     		"\033[0;31m"
+#define GREEN    		"\033[0;32m"
+#define YELLOW   		"\033[0;33m"
+#define BLUE     		"\033[0;34m"
+#define MAGENTA  		"\033[0;35m"
+#define CYAN     		"\033[0;36m"
+#define WHITE    		"\033[0;37m"
+
 //STRUCTS
 
 typedef struct s_env
@@ -43,7 +53,8 @@ typedef struct s_env
 
 typedef struct s_minishell
 {
-
+	char *prompt;
+	char **env;
 }	t_minishell;
 
 //FUNCTIONS
