@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:36:23 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/05 14:38:41 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/05 21:57:31 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int main()
     rl_on_new_line();
     while (1) 
 	{
+		signal_init();
         // Display shell prompt
         	//display_prompt();
 		char *prompt = readline(CYAN "mimishell> " CYAN);
