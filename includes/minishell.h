@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/05 21:44:04 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:01:57 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ typedef struct s_env
 
 typedef struct s_minishell
 {
-
+	// int		a;
+	// int		b;
+	// int		c;
 	char 	*prompt;
 	char 	**env;
 }	t_minishell;
@@ -66,7 +68,7 @@ typedef struct s_minishell
 /* builtin-commands */
 
 /* parsing */
-
+void	parser(t_minishell *ms);
 /* env */
 
 /* export */
@@ -79,5 +81,7 @@ void	signal_init(void);
 
 /* init */
 
+/* history */
+void	history_init();
 
 #endif

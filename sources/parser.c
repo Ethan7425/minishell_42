@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:38:47 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/05 15:24:18 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:39:43 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,42 @@
 
 void	parser(t_minishell *ms)
 {
-	//parse single and double quotes
-	//parse space and tabs
-	//
+
+	//rl_redisplay();
 
 }
+
+// void handle_spaces(t_minishell *ms)
+// {
+
+// }
+
+// void handle_quotes(t_minishell *ms)
+// {
+
+// }
+
+// void handle_pipes(t_minishell *ms)
+// {
+
+// }
+
+// void handle_redir(t_minishell *ms)
+// {
+
+// }
+
+// void handle_external(t_minishell *ms)
+// {
+
+// }
+
+// void handle_builtin(t_minishell *ms)
+// {
+
+// }
+
+// void handle_args(t_minishell *ms)
+// {
+
+// }

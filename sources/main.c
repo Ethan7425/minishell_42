@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:36:23 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/05 21:57:31 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:09:00 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,27 @@
 
 int main() 
 {
-	//t_minishell		ms;
+	t_minishell		ms;
     // Initialization
     	//shell_init();
-    rl_clear_history();
-    rl_on_new_line();
+	history_init();
+
     while (1) 
 	{
 		signal_init();
         // Display shell prompt
         	//display_prompt();
-		char *prompt = readline(CYAN "mimishell> " CYAN);
+		ms.prompt = readline(CYAN "minishell> " CYAN);
         // Read user input
         	//char *prompt = read_user_input();
 
         // Add the user input to history
-        if (prompt && *prompt) 
-            add_history(prompt);
+        if (ms.prompt) 
+            add_history(ms.prompt);
 
         // Parse user input
         	//char **command_args = parse_input(prompt);
+		parser(&ms);
 
         // Check if it's a built-in command
 			// if (is_builtin_command(command_args[0])) {
@@ -51,7 +52,7 @@ int main()
 			// }
 
         // Clean up
-        free(prompt);
+        free(ms.prompt);
         	//free(command_args);
 
         // Check exit condition (e.g., user types "exit")
