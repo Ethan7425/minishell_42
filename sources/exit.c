@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:50:35 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/05 14:54:55 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/07 10:16:57 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,9 @@ int print_error(char *msg)
 	exit(EXIT_FAILURE);
 }
 
+void	fatal_error(char *msg)
+{
+	perror(msg);
+	exit(EXIT_FAILURE);
+}
 

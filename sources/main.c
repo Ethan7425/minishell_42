@@ -6,25 +6,21 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:36:23 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/06 16:09:00 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:28:03 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-
-// int main(int argc, char **argv, char **envp)
-// {
-// 	if (argc == 1)
-// 		write(1, "c", 1);
-// }
-
-int main() 
+int main(int argc, char **argv) 
 {
+	// Initialization
+	(void) argv;
 	t_minishell		ms;
-    // Initialization
-    	//shell_init();
+	//shell_init();
+	args_check(argc);
 	history_init();
+
 
     while (1) 
 	{
@@ -41,7 +37,7 @@ int main()
 
         // Parse user input
         	//char **command_args = parse_input(prompt);
-		parser(&ms);
+		// parser(&ms);
 
         // Check if it's a built-in command
 			// if (is_builtin_command(command_args[0])) {

@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/06 16:01:57 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:15:12 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,14 @@ typedef struct s_minishell
 	char 	**env;
 }	t_minishell;
 
+struct Token {
+    char *value;
+    struct Token *next;
+}	t_token;
+
 //FUNCTIONS
 /* main functions */
-
+void args_check(int argc);
 /* builtin-commands */
 
 /* parsing */
@@ -75,6 +80,9 @@ void	parser(t_minishell *ms);
 
 /* cd */
 
+/* exit */
+int 	print_error(char *msg);
+void	fatal_error(char *msg);
 /* signals */
 void	signal_handler(int signum);
 void	signal_init(void);

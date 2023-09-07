@@ -6,18 +6,18 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:38:47 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/06 16:39:43 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/07 10:09:51 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	parser(t_minishell *ms)
-{
+// void	parser(t_minishell *ms)
+// {
 
-	//rl_redisplay();
+// 	//rl_redisplay();
 
-}
+// }
 
 // void handle_spaces(t_minishell *ms)
 // {

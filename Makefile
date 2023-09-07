@@ -6,7 +6,7 @@
 #    By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 16:01:12 by etbernar          #+#    #+#              #
-#    Updated: 2023/09/06 16:01:11 by etbernar         ###   ########.fr        #
+#    Updated: 2023/09/07 16:15:20 by etbernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,8 @@ SRCS_LIST	=	main.c \
 				signals.c \
 				history.c \
 				parser.c \
+				utils.c \
+				exit.c \
 				
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
