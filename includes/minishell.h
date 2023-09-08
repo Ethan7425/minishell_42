@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/07 16:15:12 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/07 23:43:24 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,28 +43,31 @@
 
 //STRUCTS
 
-int		g_cat;
+int		g_var;
 
-typedef struct s_env
-{
-	char			*key;
-	char			*value;
-	struct s_env	*next;
-	struct s_env	*prev;
-}	t_env;
+// typedef struct s_env
+// {
+// 	char			*key;
+// 	char			*value;
+// 	struct s_env	*next;
+// 	struct s_env	*prev;
+// }	t_env;
+
 
 typedef struct s_minishell
 {
 	// int		a;
 	// int		b;
 	// int		c;
+	t_token *token;
 	char 	*prompt;
 	char 	**env;
 }	t_minishell;
 
-struct Token {
+typedef struct s_token 
+{
     char *value;
-    struct Token *next;
+    struct token *next;
 }	t_token;
 
 //FUNCTIONS
@@ -88,6 +91,9 @@ void	signal_handler(int signum);
 void	signal_init(void);
 
 /* init */
+
+/* termios */
+void	termios_init(void);
 
 /* history */
 void	history_init();

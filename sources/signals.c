@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 21:25:02 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/05 21:31:08 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/07 22:48:59 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	signal_handler(int signum)
 {
-	if (signum == SIGINT && g_cat == 1)
+	if (signum == SIGINT && g_var == 1)
 	{
 		ft_putstr_fd("^C \n", 2);
-		g_cat = 130;
+		g_var = 130;
 	}
 	else if (signum == SIGINT)
 	{
@@ -25,18 +25,18 @@ void	signal_handler(int signum)
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
-		g_cat = 0;
+		g_var = 0;
 	}
-	if (signum == SIGQUIT && g_cat == 1)
+	if (signum == SIGQUIT && g_var == 1)
 	{
 		ft_putstr_fd("^\\Quit: 3\n", 2);
-		g_cat = 131;
+		g_var = 131;
 	}
 	else if (signum == SIGQUIT)
 	{
 		rl_on_new_line();
 		rl_redisplay();
-		g_cat = 0;
+		g_var = 0;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:36:23 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/07 16:28:03 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/07 23:40:07 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,11 @@ int main(int argc, char **argv)
     // Perform cleanup and exit
     	//cleanup_shell();
     return 0;
+}
+
+void	shell_init()
+{
+	g_var = 0;
+	termios_init();
+	
 }
