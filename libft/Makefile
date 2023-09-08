@@ -6,9 +6,20 @@
 #    By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 11:06:27 by etbernar          #+#    #+#              #
-#    Updated: 2023/06/14 09:30:49 by etbernar         ###   ########.fr        #
+#    Updated: 2023/09/08 15:18:05 by etbernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# COLORS #
+RESET_COLOR = "\033[0m"
+RED = "\033[0;31m"
+GREEN = "\033[0;32m"
+YELLOW = "\033[0;33m"
+BLUE = "\033[0;34m"
+MAGENTA = "\033[0;35m"
+CYAN = "\033[0;36m"
+WHITE = "\033[0;37m"
+
 
 SRCS = ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c \
 	ft_memset.c ft_isalpha.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c \
@@ -33,16 +44,19 @@ CFLAGS = -Wall -Wextra -Werror
 all: ${NAME}
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	@(${CC} ${CFLAGS} -c $< -o ${<:.c=.o})
 
 ${NAME}: ${OBJS}
-	ar rcs ${NAME} ${OBJS}
+	@(ar rcs ${NAME} ${OBJS})
+	@echo ${GREEN}"[Libft] Compilation DONE"${RESET_COLOR}
 
 clean:
-	${RM} ${OBJS}
+	@(${RM} ${OBJS})
+	@echo ${YELLOW}"[Libft] Cleaning DONE"${RESET_COLOR}
 
-fclean: clean
-	${RM} ${NAME}
+fclean: 
+	@(${RM} ${NAME})
+	@echo ${MAGENTA}"[Libft] Force Cleaning DONE"${RESET_COLOR}
 
 re: fclean all
 

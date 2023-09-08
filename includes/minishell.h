@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/07 23:43:24 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/08 14:48:39 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,17 @@
 
 int		g_var;
 
-// typedef struct s_env
-// {
-// 	char			*key;
-// 	char			*value;
-// 	struct s_env	*next;
-// 	struct s_env	*prev;
-// }	t_env;
+// TODO : env struct
 
+struct s_token;
 
 typedef struct s_minishell
 {
 	// int		a;
 	// int		b;
 	// int		c;
-	t_token *token;
+	struct s_token *token;
+	int 	tokens_nb;
 	char 	*prompt;
 	char 	**env;
 }	t_minishell;
@@ -67,12 +63,13 @@ typedef struct s_minishell
 typedef struct s_token 
 {
     char *value;
-    struct token *next;
+    struct s_token *next;
 }	t_token;
 
 //FUNCTIONS
 /* main functions */
-void args_check(int argc);
+void 	args_check(int argc);
+void	shell_init(t_minishell *ms);
 /* builtin-commands */
 
 /* parsing */

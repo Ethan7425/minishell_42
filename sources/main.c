@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:36:23 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/07 23:40:07 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/08 15:15:45 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	// Initialization
 	(void) argv;
 	t_minishell		ms;
-	//shell_init();
+	shell_init(&ms);
 	args_check(argc);
 	history_init();
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 		signal_init();
         // Display shell prompt
         	//display_prompt();
-		ms.prompt = readline(CYAN "minishell> " CYAN);
+		ms.prompt = readline(CYAN "minishell> " RESET_COLOR);
         // Read user input
         	//char *prompt = read_user_input();
 
@@ -35,16 +35,15 @@ int main(int argc, char **argv)
         if (ms.prompt) 
             add_history(ms.prompt);
 
-        // Parse user input
-        	//char **command_args = parse_input(prompt);
+        // Parse / lexer user input
+        	
 		// parser(&ms);
 
         // Check if it's a built-in command
-			// if (is_builtin_command(command_args[0])) {
+			// if (is_builtin_command()) {
 			// 	execute_builtin(command_args);
 			// } else {
-			// 	// Execute external command
-			// 	execute_external_command(command_args);
+			// 	 Execute external command
 			// }
 
         // Clean up
@@ -62,9 +61,9 @@ int main(int argc, char **argv)
     return 0;
 }
 
-void	shell_init()
+void	shell_init(t_minishell *ms)
 {
 	g_var = 0;
 	termios_init();
-	
+	ms->tokens_nb = 0;
 }

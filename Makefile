@@ -6,42 +6,19 @@
 #    By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/30 16:01:12 by etbernar          #+#    #+#              #
-#    Updated: 2023/09/07 23:06:49 by etbernar         ###   ########.fr        #
+#    Updated: 2023/09/08 15:19:08 by etbernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # COLORS #
-
-# NAME		= minishell
-# SRC = $(addprefix sources/, main.c)
-# OBJ := $(SRC:%.c=%.o)
-
-# INCL_PATH	=	-Iincl/ \
-# 				-I$(HOME)/.brew/opt/readline/include
-
-# # COMMANDS #
-# CC			= gcc
-# CCFLAGS     = -Wall -Wextra -Werror -I/usr/include/readline
-# LDFLAGS     = -lreadline -L/usr/include/readline -lncurses
-# RM			= rm -rf
-
-# $(NAME): $(OBJ)
-# 	$(CC) $(CCFLAGS) $(LDFLAGS) -o $(NAME) $(OBJ)
-
-# %.o: %.c
-# 	$(CC) $(CCFLAGS) ${INCL_PATH} -c $< -o $@
-
-# all: $(NAME)
-
-# clean:
-# 	rm -f $(OBJ)
-
-# fclean: clean
-# 	rm -f $(NAME)
-
-# re: fclean all
-
-# .PHONY: all clean fclean re
+RESET_COLOR = "\033[0m"
+RED = "\033[0;31m"
+GREEN = "\033[0;32m"
+YELLOW = "\033[0;33m"
+BLUE = "\033[0;34m"
+MAGENTA = "\033[0;35m"
+CYAN = "\033[0;36m"
+WHITE = "\033[0;37m"
 
 NAME		=	minishell
 
@@ -50,7 +27,6 @@ CFLAGS		=	-Wall -Werror -Wextra -g -I$(HOME)/.brew/opt/readline/include
 
 INCL_PATH	=	-Iincl/ \
 				-I$(HOME)/.brew/opt/readline/include
-
 
 LIBS		=	-Llibft -lft -lreadline \
 				-L$(HOME)/.brew/opt/readline/lib
@@ -77,25 +53,30 @@ READLINE	=	-lreadline -L$(HOME)/.brew/opt/readline/lib
 all:			${LIBFT} ${NAME}
 
 ${OBJS_DIR}:
-				mkdir ${OBJS_DIR}
+				@(mkdir ${OBJS_DIR})
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c
-				${CC} ${CFLAGS} ${INCL_PATH} -c $^ -o $@
+				@(${CC} ${CFLAGS} ${INCL_PATH} -c $^ -o $@)
 
 ${NAME}:		${OBJS_DIR} ${OBJS}
-				${CC} ${CFLAGS} ${OBJS} ${LIBS} -o ${NAME}
+				@(${CC} ${CFLAGS} ${OBJS} ${LIBS} -o ${NAME})
+				@echo ${GREEN}"[Minishell] Compilation DONE"${RESET_COLOR}
 
 ${LIBFT}:
-				$(MAKE) -C libft
+				@($(MAKE) -C libft)
 
 clean:
-				rm -rf ${OBJS_DIR}
-				$(MAKE) -C libft clean
+				@(rm -rf ${OBJS_DIR})
+				@($(MAKE) -C libft clean)
+				@echo ${YELLOW}"[Minishell] Cleaning DONE"${RESET_COLOR}
 
 fclean:			clean
-				rm -f ${NAME}
-				$(MAKE) -C libft fclean
+				@(rm -f ${NAME})
+				@($(MAKE) -C libft fclean)
+				@echo ${MAGENTA}"[Minishell] Forced Cleaning DONE"${RESET_COLOR}
 
 re:				fclean all
+				@echo ${RED}"[Minishell] REBOOTED"${RESET_COLOR}
+				
 
 .PHONY:			all clean fclean re
