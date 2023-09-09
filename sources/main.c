@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:36:23 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/08 15:15:45 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/09 10:13:04 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,25 @@
 
 int main(int argc, char **argv) 
 {
+	t_minishell		ms;
 	// Initialization
 	(void) argv;
-	t_minishell		ms;
 	shell_init(&ms);
 	args_check(argc);
-	history_init();
-
 
     while (1) 
 	{
-		signal_init();
+		signal_init(prompt_handler);
         // Display shell prompt
         	//display_prompt();
 		ms.prompt = readline(CYAN "minishell> " RESET_COLOR);
-        // Read user input
-        	//char *prompt = read_user_input();
-
+		if (!ms.prompt)
+			break;
         // Add the user input to history
         if (ms.prompt) 
             add_history(ms.prompt);
+		// Read user input
+        //char *prompt = read_user_input();
 
         // Parse / lexer user input
         	
@@ -64,6 +63,8 @@ int main(int argc, char **argv)
 void	shell_init(t_minishell *ms)
 {
 	g_var = 0;
+	history_init();
 	termios_init();
 	ms->tokens_nb = 0;
+	
 }

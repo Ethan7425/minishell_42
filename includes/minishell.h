@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/08 14:48:39 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/09 11:27:21 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,26 @@ typedef struct s_token
 }	t_token;
 
 //FUNCTIONS
-/* main functions */
+
+/* utils */
 void 	args_check(int argc);
+int		ft_is_space(int c);
+int		ft_is_pipe(int c);
+int		ft_is_redirec(int c);
+
+/* main functions */
 void	shell_init(t_minishell *ms);
+
 /* builtin-commands */
 
+/* lexer */
+char	**ft_lexer(char const *str);
+int		ft_count_arg(const char *str);
+char	*ft_get_next_arg(const char *str, int *start);
+
 /* parsing */
-void	parser(t_minishell *ms);
+//void	parser(t_minishell *ms);
+
 /* env */
 
 /* export */
@@ -83,9 +96,13 @@ void	parser(t_minishell *ms);
 /* exit */
 int 	print_error(char *msg);
 void	fatal_error(char *msg);
+
 /* signals */
-void	signal_handler(int signum);
-void	signal_init(void);
+void	signal_init(void (*signal_handler)(int));
+void	prompt_handler(int sig);
+void	exec_handler(int sig);
+// void	signal_handler(int signum);
+// void	signal_init(void);
 
 /* init */
 
