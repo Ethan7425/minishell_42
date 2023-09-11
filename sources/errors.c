@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   termios.c                                          :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 10:10:57 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/11 13:42:21 by etbernar         ###   ########.fr       */
+/*   Created: 2023/09/05 14:50:35 by etbernar          #+#    #+#             */
+/*   Updated: 2023/09/11 14:51:32 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-// Set the terminal attributes so that unwanted ^C are not printed
-void	termios_init(void)
+int	print_error(char *msg)
 {
-	struct termios	termios;
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
+	exit(EXIT_FAILURE);
+}
 
-	if ((tcgetattr(STDIN_FILENO, &termios)) == -1)
-		fatal_error("Error tcgetattr");
-	termios.c_lflag &= ~ECHOCTL;
-	if ((tcsetattr(STDIN_FILENO, TCSANOW, &termios)) == -1)
-		fatal_error("Error tcgetattr");
+void	fatal_error(char *msg)
+{
+	perror(msg);
+	exit(EXIT_FAILURE);
 }

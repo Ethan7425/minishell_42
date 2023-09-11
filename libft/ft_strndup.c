@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 14:50:35 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/07 10:16:57 by etbernar         ###   ########.fr       */
+/*   Created: 2023/09/11 08:24:14 by etbernar          #+#    #+#             */
+/*   Updated: 2023/09/11 08:34:24 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int print_error(char *msg)
+char	*ft_strndup(const char *s1, size_t n)
 {
-	write(2, msg, ft_strlen(msg));
-	write(2, "\n", 1);
-	exit(EXIT_FAILURE);
-}
+	char	*tab;
+	size_t	i;
+	size_t	len;
 
-void	fatal_error(char *msg)
-{
-	perror(msg);
-	exit(EXIT_FAILURE);
+	i = 0;
+	len = ft_strlen(s1);
+	if (n < len)
+		len = n;
+	tab = malloc(sizeof(char) * (len + 1));
+	if (!tab)
+		return (NULL);
+	while (i < len)
+	{
+		tab[i] = s1[i];
+		i++;
+	}
+	tab[i] = '\0';
+	return (tab);
 }
-

@@ -6,55 +6,53 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 10:23:19 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/09 12:34:49 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:52:27 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_count_arg(const char *str)
+int	count_arg(const char *str)
 {
 	int		i;
-	int		nb_word;
-	char	cur_quote;
+	int		word_nb;
+	char	quote_status;
 
 	if (!str)
 		return (0);
-	nb_word = 0;
-	cur_quote = 0;
+	word_nb = 0;
+	quote_status = 0;
 	i = -1;
 	while (str[++i])
 	{
-	
-		update_quote_status(str[i], &cur_quote);	//TODO
-		if (!cur_quote)
-	
-			update_word_count(str, i, &nb_word);	//TODO
+		update_quote_status(str[i], &quote_status);
+		if (!quote_status)
+			word_nb_increase(str, i, &word_nb);
 	}
-	if (!ft_is_space(str[i - 1]) && !ft_is_pipe_or_redirec(str[i - 1]))
-		nb_word++;
-	return (nb_word);
+	if (!is_space(str[i - 1]) && !is_redir_pipe(str[i - 1]))
+		word_nb++;
+	return (word_nb);
 }
 
-char	*ft_get_next_arg(const char *str, int *start)
+char	*next_arg(const char *str, int *start)
 {
 	int		i;
-	char	cur_quote;
+	char	quote_status;
 	char	*word;
 
-	cur_quote = 0;
+	quote_status = 0;
 	i = *start;
 	if (!str || !str[i])
 		return (NULL);
-	while (ft_is_space(str[i]))
+	while (is_space(str[i]))
 		i++;
 	*start = i;
 	while (str[i])
 	{
-		update_quote_status(str[i], &cur_quote); //TODO
-		if (!cur_quote)
+		update_quote_status(str[i], &quote_status);
+		if (!quote_status)
 		{
-			word = handle_character(str, i, start); //TODO
+			word = parse_character(str, i, start);
 			if (word)
 				return (word);
 		}
@@ -63,28 +61,40 @@ char	*ft_get_next_arg(const char *str, int *start)
 	return (extract_tokens(str, i, start));
 }
 
-char	**ft_lexer(char const *str)
+char	**lexer(char const *str)
 {
 	int		i;
-	int		nb_word_cpt;
+	int		word_nb_cpt;
 	int		nb_args;
 	char	**splited;
 
 	if (!str)
 		return (NULL);
-	nb_args = ft_count_arg(str);
+	nb_args = count_arg(str);
 	splited = malloc((nb_args + 1) * sizeof(char *));
 	if (!splited)
-		fatal_error("memory allocation error4\n");
+		fatal_error("malloc error\n");
 	i = 0;
-	nb_word_cpt = 0;
-	while (nb_word_cpt < nb_args)
+	word_nb_cpt = 0;
+	while (word_nb_cpt < nb_args)
 	{
-		splited[nb_word_cpt] = ft_get_next_arg(str, &i);
-		if (!splited[nb_word_cpt])
+		splited[word_nb_cpt] = next_arg(str, &i);
+		if (!splited[word_nb_cpt])
 			return (NULL);
-		nb_word_cpt++;
+		word_nb_cpt++;
 	}
 	splited[nb_args] = NULL;
 	return (splited);
+}
+
+void	word_nb_increase(const char *str, int i, int *word_nb)
+{
+	if ((i > 0 && (is_space(str[i]) || is_redir_pipe(str[i]))
+			&& !is_space(str[i - 1]) && !is_redir_pipe(str[i - 1])))
+	{
+		(*word_nb)++;
+		if (i > 0 && is_redir_pipe(str[i]) && !is_redir_pipe(str[i - 1])
+			&& !is_space(str[i - 1]))
+			(*word_nb)++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/09 11:27:21 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:54:00 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <sys/syslimits.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 # include "../libft/libft.h"
 
 // COLORS //
-#define RESET_COLOR     "\033[0m"
-#define RED     		"\033[0;31m"
-#define GREEN    		"\033[0;32m"
-#define YELLOW   		"\033[0;33m"
-#define BLUE     		"\033[0;34m"
-#define MAGENTA  		"\033[0;35m"
-#define CYAN     		"\033[0;36m"
-#define WHITE    		"\033[0;37m"
+# define RESET_COLOR    "\033[0m"
+# define RED     		"\033[0;31m"
+# define GREEN    		"\033[0;32m"
+# define YELLOW   		"\033[0;33m"
+# define BLUE     		"\033[0;34m"
+# define MAGENTA  		"\033[0;35m"
+# define CYAN     		"\033[0;36m"
+# define WHITE    		"\033[0;37m"
 
 //STRUCTS
 
@@ -47,32 +47,34 @@ int		g_var;
 
 // TODO : env struct
 
-struct s_token;
+struct	s_token;
 
 typedef struct s_minishell
 {
 	// int		a;
 	// int		b;
 	// int		c;
-	struct s_token *token;
-	int 	tokens_nb;
-	char 	*prompt;
-	char 	**env;
+	struct s_token	*token;
+	int				tokens_nb;
+	char			*prompt;
+	char			**format_prompt;
+	char			**env;
 }	t_minishell;
 
-typedef struct s_token 
+typedef struct s_token
 {
-    char *value;
-    struct s_token *next;
+	char			*value;
+	struct s_token	*next;
 }	t_token;
 
 //FUNCTIONS
 
 /* utils */
-void 	args_check(int argc);
-int		ft_is_space(int c);
-int		ft_is_pipe(int c);
-int		ft_is_redirec(int c);
+void	args_check(int argc);
+int		is_space(int c);
+int		is_redir_pipe(int c);
+char	*extract_tokens(const char *str, int i, int *start);
+char	*parse_character(const char *str, int i, int *start);
 
 /* main functions */
 void	shell_init(t_minishell *ms);
@@ -80,9 +82,11 @@ void	shell_init(t_minishell *ms);
 /* builtin-commands */
 
 /* lexer */
-char	**ft_lexer(char const *str);
-int		ft_count_arg(const char *str);
-char	*ft_get_next_arg(const char *str, int *start);
+char	**lexer(char const *str);
+int		count_arg(const char *str);
+char	*next_arg(const char *str, int *start);
+void	word_nb_increase(const char *str, int i, int *word_nb);
+void	update_quote_status(char cur_char, char *quote_status);
 
 /* parsing */
 //void	parser(t_minishell *ms);
@@ -93,23 +97,25 @@ char	*ft_get_next_arg(const char *str, int *start);
 
 /* cd */
 
-/* exit */
-int 	print_error(char *msg);
+/* errors */
+int		print_error(char *msg);
 void	fatal_error(char *msg);
 
 /* signals */
 void	signal_init(void (*signal_handler)(int));
 void	prompt_handler(int sig);
 void	exec_handler(int sig);
-// void	signal_handler(int signum);
-// void	signal_init(void);
 
 /* init */
+void prompt_init(t_minishell *ms);
 
 /* termios */
 void	termios_init(void);
 
 /* history */
-void	history_init();
+void	history_init(void);
+
+/* test */
+void	builtins(t_minishell *ms);
 
 #endif
