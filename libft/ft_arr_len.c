@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inits.c                                            :+:      :+:    :+:   */
+/*   ft_arr_len.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 14:38:52 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/12 10:17:55 by etbernar         ###   ########.fr       */
+/*   Created: 2023/09/12 09:16:14 by etbernar          #+#    #+#             */
+/*   Updated: 2023/09/12 09:37:49 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	prompt_init(t_minishell *ms)
+int	ft_arr_len(char **arr)
 {
-	ms->format_prompt = lexer(ms->prompt);
+	int	i;
+
+	i = 0;
+	while (arr && arr[i])
+		i++;
+	return (i);
 }

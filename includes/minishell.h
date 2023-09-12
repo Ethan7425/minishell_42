@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/11 14:54:00 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/12 11:44:57 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_minishell
 	int				tokens_nb;
 	char			*prompt;
 	char			**format_prompt;
-	char			**env;
+	char			**envp_copy;
 }	t_minishell;
 
 typedef struct s_token
@@ -77,7 +77,7 @@ char	*extract_tokens(const char *str, int i, int *start);
 char	*parse_character(const char *str, int i, int *start);
 
 /* main functions */
-void	shell_init(t_minishell *ms);
+void	shell_init(t_minishell *ms, char **envp);
 
 /* builtin-commands */
 
@@ -96,6 +96,24 @@ void	update_quote_status(char cur_char, char *quote_status);
 /* export */
 
 /* cd */
+
+
+/* quotes */
+bool open_quotes(char *str);
+
+/* syntax */
+void	syntax_error(char *token);
+bool	empty_input(char *in);
+bool	syntax_ok(char *in);
+bool	is_pipe(int c);
+bool	is_redir(int c);
+/* syntax utils */
+bool	many_redir(char **in_syntaxed, int i, int len, int nb_redir);
+bool	same_redir(char cur_redir, char prev_redir);
+bool	valid_redir(char **in_syntaxed, int i);
+bool	valid_pipe(char **in_syntaxed, int i);
+
+
 
 /* errors */
 int		print_error(char *msg);

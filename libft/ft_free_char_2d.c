@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inits.c                                            :+:      :+:    :+:   */
+/*   ft_free_char_2d.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 14:38:52 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/12 10:17:55 by etbernar         ###   ########.fr       */
+/*   Created: 2023/09/12 09:18:15 by etbernar          #+#    #+#             */
+/*   Updated: 2023/09/12 09:36:37 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	prompt_init(t_minishell *ms)
+void	ft_free_char_2d(char **c)
 {
-	ms->format_prompt = lexer(ms->prompt);
+	int	i;
+
+	if (!c)
+		return ;
+	i = 0;
+	while (c[i])
+	{
+		free(c[i]);
+		i++;
+	}
+	free(c);
 }

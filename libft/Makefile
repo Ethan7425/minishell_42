@@ -6,7 +6,7 @@
 #    By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 11:06:27 by etbernar          #+#    #+#              #
-#    Updated: 2023/09/11 15:36:37 by etbernar         ###   ########.fr        #
+#    Updated: 2023/09/12 11:48:21 by etbernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRCS_LIST = ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c \
 	ft_putendl_fd.c ft_printf.c check_suffix.c my_func.c ft_putchar.c my_hexa_func.c \
 	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c \
 	ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c \
-	ft_lstmap_bonus.c ft_strndup.c
+	ft_lstmap_bonus.c ft_strndup.c \
+	ft_arr_len.c ft_free_char_2d.c ft_arrdup.c
 
 
 NAME = libft.a

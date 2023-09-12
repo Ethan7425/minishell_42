@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/30 16:01:12 by etbernar          #+#    #+#              #
-#    Updated: 2023/09/11 14:52:48 by etbernar         ###   ########.fr        #
+#    Created: 2023/09/12 11:29:32 by etbernar          #+#    #+#              #
+#    Updated: 2023/09/12 11:29:47 by etbernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,11 +41,14 @@ SRCS_LIST	=	main.c \
 				history.c \
 				parser.c \
 				utils.c \
+				utils_syntax.c \
 				errors.c \
 				termios.c \
 				lexer.c \
 				exec.c \
 				inits.c \
+				syntax.c \
+				quotes.c \
 				
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 

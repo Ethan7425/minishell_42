@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 11:45:00 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/11 08:33:32 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/12 11:47:56 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 char			*ft_strjoin(const char *s1, const char *s2);
 void			fill_str(char *res, char *s1, char *s2);
 char			*ft_strndup(const char *s1, size_t n);
+int				ft_arr_len(char **arr);
+void			ft_free_char_2d(char **c);
+char			**ft_arrdup(char **arr);
 
 // Printf //
 int				check_suffix(const char suffix, va_list args);
