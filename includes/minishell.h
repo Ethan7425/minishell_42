@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/12 11:44:57 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:51:39 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,36 @@ typedef struct s_minishell
 	char			**envp_copy;
 }	t_minishell;
 
+typedef enum e_redir_in {
+	NO_R_IN,
+	INPUT_REDIR,
+	HEREDOC_REDIR
+}			t_redir_in;
+
+typedef enum e_redir_out {
+	NO_R_OUT,
+	OUTPUT_REDIR,
+	APPEND_REDIR
+}			t_redir_out;
+
+typedef struct s_redirt {
+	char		*infile;
+	char		*outfile;
+	int			infile_fd;
+	int			outfile_fd;
+	int			valid_infile;
+	int			*heredoc_fd;
+	t_redir_in	r_in_type;
+	t_redir_out	r_out_type;
+}				t_redir;
+
 typedef struct s_token
 {
+	int				buitlins_cmd;
+	char			**commands;
 	char			*value;
+	int				token_id;
+	t_redir			redir;
 	struct s_token	*next;
 }	t_token;
 
@@ -75,11 +102,15 @@ int		is_space(int c);
 int		is_redir_pipe(int c);
 char	*extract_tokens(const char *str, int i, int *start);
 char	*parse_character(const char *str, int i, int *start);
+char	**ft_str_arr_cat(char **str_arr, const char *new_str);
 
 /* main functions */
 void	shell_init(t_minishell *ms, char **envp);
 
-/* builtin-commands */
+/* tokens */
+void	format_redir(t_redir *redirec, char **in, int *i);
+void	token_free(t_token *token);
+int		make_token(t_token **tokens, char **format_prompt);
 
 /* lexer */
 char	**lexer(char const *str);
@@ -87,6 +118,9 @@ int		count_arg(const char *str);
 char	*next_arg(const char *str, int *start);
 void	word_nb_increase(const char *str, int i, int *word_nb);
 void	update_quote_status(char cur_char, char *quote_status);
+
+/* lexer */
+
 
 /* parsing */
 //void	parser(t_minishell *ms);
@@ -97,9 +131,8 @@ void	update_quote_status(char cur_char, char *quote_status);
 
 /* cd */
 
-
 /* quotes */
-bool open_quotes(char *str);
+bool	open_quotes(char *str);
 
 /* syntax */
 void	syntax_error(char *token);
@@ -113,8 +146,6 @@ bool	same_redir(char cur_redir, char prev_redir);
 bool	valid_redir(char **in_syntaxed, int i);
 bool	valid_pipe(char **in_syntaxed, int i);
 
-
-
 /* errors */
 int		print_error(char *msg);
 void	fatal_error(char *msg);
@@ -125,7 +156,8 @@ void	prompt_handler(int sig);
 void	exec_handler(int sig);
 
 /* init */
-void prompt_init(t_minishell *ms);
+void	prompt_init(t_minishell *ms);
+t_token	*token_init(int token_id);
 
 /* termios */
 void	termios_init(void);

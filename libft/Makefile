@@ -6,7 +6,7 @@
 #    By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 11:06:27 by etbernar          #+#    #+#              #
-#    Updated: 2023/09/12 11:48:21 by etbernar         ###   ########.fr        #
+#    Updated: 2023/09/13 14:57:32 by etbernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,9 @@ clean:
 
 fclean:			
 				@(rm -f ${NAME})
+				@(rm -rf ${OBJS_DIR})
 				@echo ${MAGENTA}"[Libft] Forced Cleaning DONE"${RESET_COLOR}
+
 
 re: fclean all
 	@echo ${RED}"[Libtf] REBOOTED"${RESET_COLOR}

@@ -6,7 +6,7 @@
 #    By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 11:29:32 by etbernar          #+#    #+#              #
-#    Updated: 2023/09/12 11:29:47 by etbernar         ###   ########.fr        #
+#    Updated: 2023/09/13 14:54:10 by etbernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS_LIST	=	main.c \
 				history.c \
 				parser.c \
 				utils.c \
+				utils2.c \
 				utils_syntax.c \
 				errors.c \
 				termios.c \
@@ -49,6 +50,7 @@ SRCS_LIST	=	main.c \
 				inits.c \
 				syntax.c \
 				quotes.c \
+				tokens.c \
 				
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
@@ -84,5 +86,4 @@ fclean:			clean
 re:				fclean all
 				@echo ${RED}"[Minishell] REBOOTED"${RESET_COLOR}
 				
-
 .PHONY:			all clean fclean re

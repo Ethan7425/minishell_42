@@ -6,13 +6,13 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 08:46:40 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/12 08:48:25 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:04:14 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool open_quotes(char *str)
+bool	open_quotes(char *str)
 {
 	int	open_quote;
 

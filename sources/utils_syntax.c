@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 08:57:11 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/12 11:12:40 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:04:56 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ bool	many_redir(char **in_syntaxed, int i, int len, int nb_redir)
 		syntax_error(in_syntaxed[i]);
 	return (true);
 }
-
 
 bool	valid_pipe(char **in_syntaxed, int i)
 {
@@ -56,7 +55,7 @@ bool	valid_redir(char **in_syntaxed, int i)
 	if (!in_syntaxed || !*in_syntaxed[i] || !is_redir(*in_syntaxed[i]))
 		return (false);
 	redir = *in_syntaxed[i];
-	len =  ft_arr_len(in_syntaxed);
+	len = ft_arr_len(in_syntaxed);
 	nb_redir_in_a_row = 1;
 	while (++i < len)
 	{

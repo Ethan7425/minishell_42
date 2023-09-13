@@ -6,14 +6,14 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:28:56 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/06 14:23:47 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:03:51 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	history_init()
+void	history_init(void)
 {
-    rl_clear_history();
-    rl_on_new_line();
+	rl_clear_history();
+	rl_on_new_line();
 }
