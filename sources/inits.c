@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:38:52 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/13 14:15:35 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/13 18:19:26 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 void	prompt_init(t_minishell *ms)
 {
 	ms->format_prompt = lexer(ms->prompt);
-	printf("format promtp is %s\n", &ms->format_prompt[0][0]);
-	printf("format promtp is %s\n", &ms->format_prompt[1][0]);
 	// TODO expander for env var
-	// ms->tokens_nb = make_token(&ms->token, ms->format_prompt);
+	ms->tokens_nb = make_token(&ms->token, ms->format_prompt);
+	executionner(ms->token, ms);
 }
 
 t_token	*token_init(int token_id)

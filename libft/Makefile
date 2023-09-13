@@ -6,7 +6,7 @@
 #    By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 11:06:27 by etbernar          #+#    #+#              #
-#    Updated: 2023/09/13 14:57:32 by etbernar         ###   ########.fr        #
+#    Updated: 2023/09/13 18:42:51 by etbernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,29 +47,28 @@ OBJS		=	${addprefix ${OBJS_DIR}, ${OBJS_LIST}}
 
 all: ${NAME}
 
-
 ${OBJS_DIR}:
-				@(mkdir ${OBJS_DIR})
+				@(mkdir -p ${OBJS_DIR})
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c
 				@(${CC} ${CFLAGS} -c $^ -o $@)
 
+${NAME}:		${OBJS_DIR} ${OBJS}
+				@( ${CC} ${CFLAGS} ${OBJS} -o ${NAME})
+				@echo ${GREEN}"[Libft] Compilation DONE"${RESET_COLOR}
 
-# ${NAME}:		${OBJS_DIR} ${OBJS}
-# 				@( ${CC} ${CFLAGS} ${OBJS} -o ${NAME})
-# 				@echo ${GREEN}"[Libft] Compilation DONE"${RESET_COLOR}
 
-$(NAME): $(OBJS)
-	@ar rcs $(NAME) $(OBJS)
-	@echo ${GREEN}"[Libft] Compilation DONE"${RESET_COLOR}
+# $(NAME): $(OBJS)
+# 	@ar rcs $(NAME) $(OBJS)
+# 	@echo ${GREEN}"[Libft] Compilation DONE"${RESET_COLOR}
 
 clean:
 				@(rm -rf ${OBJS_DIR})
 				@echo ${YELLOW}"[Libft] Cleaning DONE"${RESET_COLOR}
 
-fclean:			
+fclean: clean
 				@(rm -f ${NAME})
-				@(rm -rf ${OBJS_DIR})
+				@(rm -rf ${OBJS_DIR} ${OBJS}) # Corrected removal of OBJ files
 				@echo ${MAGENTA}"[Libft] Forced Cleaning DONE"${RESET_COLOR}
 
 
@@ -77,17 +76,6 @@ re: fclean all
 	@echo ${RED}"[Libtf] REBOOTED"${RESET_COLOR}
 
 .PHONY: clean fclean all re
-
-# NAME			=	libft.a
-
-# CC				=	gcc
-# CFLAGS			=	-Wall -Werror -Wextra
-
-
-# SRCS_DIR		=	src
-# INCL_DIR		=	includes
-# OBJS_DIR		=	objs
-
 
 # SRCS_LIST		=	check_suffix.c \
 # 					ft_atoi.c \
@@ -137,32 +125,3 @@ re: fclean all
 # 					ft_toupper.c \
 # 					my_func.c \
 # 					my_hexa_func.c
-
-
-# OBJS_LIST		=	$(SRCS_LIST:.c=.o)
-# OBJS			=	$(addprefix $(OBJS_DIR)/, $(OBJS_LIST))
-
-# all: $(NAME)
-
-# $(OBJS_DIR):
-# 	mkdir -p $(OBJS_DIR)
-
-# $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-#     @$(CC) $(CFLAGS) -c $< -o $@
-	
-# $(NAME): $(OBJS)
-# 	@(ar rcs $(NAME) $(OBJS))
-# 	@echo ${GREEN}"[Libft] Compilation DONE"${RESET_COLOR}
-
-# clean:
-# 	@(rm -rf $(OBJS_DIR))
-# 	@echo ${YELLOW}"[Libft] Cleaning DONE"${RESET_COLOR}
-
-# fclean: clean
-# 	@(rm -f $(NAME))
-# 	@echo ${MAGENTA}"[Libft] Force Cleaning DONE"${RESET_COLOR}
-
-# re: fclean all
-# 	@echo ${RED}"[Libtf] REBOOTED"${RESET_COLOR}
-
-# .PHONY: all clean fclean re

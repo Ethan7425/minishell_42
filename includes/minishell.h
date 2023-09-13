@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/13 14:51:39 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/13 18:30:13 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ struct	s_token;
 
 typedef struct s_minishell
 {
-	// int		a;
+	int		a;
 	// int		b;
 	// int		c;
 	struct s_token	*token;
@@ -165,7 +165,8 @@ void	termios_init(void);
 /* history */
 void	history_init(void);
 
-/* test */
-void	builtins(t_minishell *ms);
+/* exec */
+void	executionner(t_token *token, t_minishell *ms);
+void	builtins(t_token *token, t_minishell *ms);
 
 #endif
