@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/13 18:30:13 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/14 15:32:29 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,16 @@
 # define CYAN     		"\033[0;36m"
 # define WHITE    		"\033[0;37m"
 
-//STRUCTS
+// # define EXIT_GENERAL_ERROR 2
+// # define EXIT_CMD_NOT_FOUND 127
+// # define EXIT_CMD_INTERRUPTED 130
+// # define EXIT_ERROR_FORMAT 258
 
 int		g_var;
 
-// TODO : env struct
+//STRUCTS
+
+//TODO : env struct
 
 struct	s_token;
 
@@ -119,13 +124,15 @@ char	*next_arg(const char *str, int *start);
 void	word_nb_increase(const char *str, int i, int *word_nb);
 void	update_quote_status(char cur_char, char *quote_status);
 
-/* lexer */
+/* free */
+void	free_all(t_minishell *ms);
 
 
 /* parsing */
 //void	parser(t_minishell *ms);
 
-/* env */
+/* echo */
+void	echo(t_token *token);
 
 /* export */
 
@@ -158,6 +165,7 @@ void	exec_handler(int sig);
 /* init */
 void	prompt_init(t_minishell *ms);
 t_token	*token_init(int token_id);
+char **ft_str_arr_init(void);
 
 /* termios */
 void	termios_init(void);

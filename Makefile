@@ -6,7 +6,7 @@
 #    By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 11:29:32 by etbernar          #+#    #+#              #
-#    Updated: 2023/09/13 14:54:10 by etbernar         ###   ########.fr        #
+#    Updated: 2023/09/14 13:21:36 by etbernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ NAME		=	minishell
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra -g -I$(HOME)/.brew/opt/readline/include
 
+ASAN_FLAGS  = -fsanitize=address
+
 INCL_PATH	=	-Iincl/ \
 				-I$(HOME)/.brew/opt/readline/include
 
@@ -39,7 +41,6 @@ OBJS_DIR	=	objs/
 SRCS_LIST	=	main.c \
 				signals.c \
 				history.c \
-				parser.c \
 				utils.c \
 				utils2.c \
 				utils_syntax.c \
@@ -51,6 +52,8 @@ SRCS_LIST	=	main.c \
 				syntax.c \
 				quotes.c \
 				tokens.c \
+				free.c \
+				echo.c \
 				
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
@@ -65,6 +68,12 @@ ${OBJS_DIR}:
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c
 				@(${CC} ${CFLAGS} ${INCL_PATH} -c $^ -o $@)
+
+asan: CFLAGS += ${ASAN_FLAGS}
+asan: clean ${OBJS_DIR} ${OBJS}
+	@(${CC} ${CFLAGS} ${OBJS} ${LIBS} -o ${NAME})
+	@echo ${GREEN}"[Minishell (ASan)] Compilation DONE"${RESET_COLOR}
+
 
 ${NAME}:		${OBJS_DIR} ${OBJS}
 				@(${CC} ${CFLAGS} ${OBJS} ${LIBS} -o ${NAME})

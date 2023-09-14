@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:15:46 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/13 14:52:34 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/14 10:58:00 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ int	make_token(t_token **tokens, char **format_prompt)
 		else if (format_prompt[i][0] == '<' || format_prompt[i][0] == '>')
 			format_redir(&last_token->redir, format_prompt, &i);
 		else
-			last_token->commands = ft_str_arr_cat(last_token->commands,
-						format_prompt[i]);
+		{
+			if (!last_token->commands)
+				last_token->commands = ft_str_arr_init();
+			last_token->commands = ft_str_arr_cat(last_token->commands, format_prompt[i]);
+		}
 	}
 	return (nb_token);
 }

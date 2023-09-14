@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:38:52 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/13 18:19:26 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:03:02 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,17 @@ t_token	*token_init(int token_id)
 	new->next = NULL;
 	new->redir.heredoc_fd = NULL;
 	return(new);
+}
+
+char **ft_str_arr_init(void)
+{
+    char **arr = malloc(2 * sizeof(char *));
+    
+    if (arr)
+    {
+        arr[0] = NULL;
+        arr[1] = NULL;
+    }
+
+    return arr;
 }
