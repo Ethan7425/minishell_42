@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 08:40:05 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/14 11:13:14 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/26 11:37:47 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ bool	syntax_ok(char *in)
 {
 	int		i;
 	char	**in_syntaxed;
-	
+
 	i = -1;
 	if (open_quotes(in))
-		return (false);
+		return (g_var = 258, false);
 	if (empty_input(in))
 		return (false);
 	in_syntaxed = lexer(in);
@@ -50,7 +50,6 @@ bool	syntax_ok(char *in)
 		return (ft_free_char_2d(in_syntaxed), false);
 	while (in_syntaxed[++i])
 	{
-
 		if (is_pipe(in_syntaxed[i][0]))
 		{
 			if (!valid_pipe(in_syntaxed, i))

@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 10:31:30 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/14 10:33:31 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/26 09:16:36 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,3 @@ void	free_all(t_minishell *ms)
 		ms->token = NULL;
 	}
 }
-
-

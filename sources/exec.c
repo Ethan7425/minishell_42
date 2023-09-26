@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 10:34:43 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/14 13:22:54 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/26 09:16:22 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	executionner(t_token *token, t_minishell *ms)
 {
 	builtins(token, ms);
 }
-
 
 void	builtins(t_token *token, t_minishell *ms)
 {
@@ -42,7 +41,6 @@ void	builtins(t_token *token, t_minishell *ms)
 	else if (strncmp(token->commands[0], "exit", 4) == 0)
 		printf("exit a ete request\n");
 		//? our_exit(token);
-	
 }
 
 // void externals()

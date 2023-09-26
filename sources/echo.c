@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 13:04:55 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/14 13:25:04 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/26 09:13:04 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	echo(t_token *token)
 	if (flag == 0)
 		printf("\n");
 }
-
 
 // int	main(void)
 // {

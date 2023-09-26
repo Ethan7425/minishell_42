@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:36:23 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/14 15:32:13 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/26 09:57:28 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **envp)
 		ms.prompt = readline(CYAN "minishell> " GREEN);
 		if (!ms.prompt)
 			break ;
-		if (ms.prompt)
+		if (ms.prompt[0])
 			add_history(ms.prompt);
 		if (syntax_ok(ms.prompt))
 		{
@@ -34,7 +34,7 @@ int	main(int argc, char **argv, char **envp)
 		}
 		// Clean up
 		free_all(&ms);
-    }
+	}
 	free_all(&ms);
 	// ft_free_char_2d(ms);
 	return (0);
