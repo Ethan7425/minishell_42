@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 10:34:43 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/26 09:16:22 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/28 11:36:57 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 void	executionner(t_token *token, t_minishell *ms)
 {
-	builtins(token, ms);
+	if (childable(token) == 1)
+		builtins(token, ms);
+	else if (childable(token) == 0)
+		printf("child");
+		
 }
 
 void	builtins(t_token *token, t_minishell *ms)

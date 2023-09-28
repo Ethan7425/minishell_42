@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/14 15:32:29 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/09/28 10:07:43 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ void	echo(t_token *token);
 
 /* cd */
 
+
 /* quotes */
 bool	open_quotes(char *str);
 
@@ -176,5 +177,8 @@ void	history_init(void);
 /* exec */
 void	executionner(t_token *token, t_minishell *ms);
 void	builtins(t_token *token, t_minishell *ms);
+
+/* childs */
+int	childable(t_token *token);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 11:29:32 by etbernar          #+#    #+#              #
-#    Updated: 2023/09/14 13:21:36 by etbernar         ###   ########.fr        #
+#    Updated: 2023/09/28 10:08:02 by etbernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRCS_LIST	=	main.c \
 				tokens.c \
 				free.c \
 				echo.c \
+				child.c \
 				
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
