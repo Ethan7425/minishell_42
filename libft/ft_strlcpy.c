@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:42:32 by etbernar          #+#    #+#             */
-/*   Updated: 2023/03/28 15:46:59 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/10/05 14:59:33 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	unsigned int	i;
+	//unsigned int	i;
 	unsigned int	src_len;
 
 	src_len = ft_strlen(src);
-	i = 0;
+	//i = 0;
 	if (src_len + 1 < dstsize)
 	{
 		ft_memcpy(dst, src, src_len + 1);

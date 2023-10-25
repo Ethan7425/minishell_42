@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:15:46 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/14 10:58:00 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/10/17 08:42:04 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	token_free(t_token *token)
 			free(token->redir.infile);
 		if (token->redir.outfile)
 			free(token->redir.outfile);
-		if (token->redir.heredoc_fd)
-			free(token->redir.heredoc_fd);
+		if (token->redir.heredoc_pipe)
+			free(token->redir.heredoc_pipe);
 		free(token);
 		token = next;
 	}

@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:38:52 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/26 09:12:47 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:25:45 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	prompt_init(t_minishell *ms)
 {
 	ms->format_prompt = lexer(ms->prompt);
-	// TODO expander for env var
+	// ms->format_prompt = expander(ms->format_prompt, ms->envp_copy);
 	ms->tokens_nb = make_token(&ms->token, ms->format_prompt);
 	executionner(ms->token, ms);
 }
@@ -38,7 +38,7 @@ t_token	*token_init(int token_id)
 	new->redir.r_out_type = NO_R_OUT;
 	new->redir.valid_infile = true;
 	new->next = NULL;
-	new->redir.heredoc_fd = NULL;
+	new->redir.heredoc_pipe = NULL;
 	return (new);
 }
 

@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/28 10:07:43 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:02:19 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,37 +64,44 @@ typedef struct s_minishell
 	char			*prompt;
 	char			**format_prompt;
 	char			**envp_copy;
+	int				**pipe_fd;
 }	t_minishell;
 
-typedef enum e_redir_in {
+typedef enum e_redir_in 
+{
 	NO_R_IN,
 	INPUT_REDIR,
 	HEREDOC_REDIR
 }			t_redir_in;
 
-typedef enum e_redir_out {
+typedef enum e_redir_out 
+{
 	NO_R_OUT,
 	OUTPUT_REDIR,
 	APPEND_REDIR
 }			t_redir_out;
 
-typedef struct s_redirt {
+typedef struct s_redir 
+{
 	char		*infile;
 	char		*outfile;
 	int			infile_fd;
 	int			outfile_fd;
 	int			valid_infile;
-	int			*heredoc_fd;
+	int			*heredoc_pipe;
 	t_redir_in	r_in_type;
 	t_redir_out	r_out_type;
 }				t_redir;
 
 typedef struct s_token
 {
-	int				buitlins_cmd;
+	int			buitlins_cmd;
 	char			**commands;
-	char			*value;
+	//char			*value;
+	int 			valid_cmd;
 	int				token_id;
+	int				builtin;
+	int				pid;
 	t_redir			redir;
 	struct s_token	*next;
 }	t_token;
@@ -108,6 +115,7 @@ int		is_redir_pipe(int c);
 char	*extract_tokens(const char *str, int i, int *start);
 char	*parse_character(const char *str, int i, int *start);
 char	**ft_str_arr_cat(char **str_arr, const char *new_str);
+int		is_builtin(t_token *token);
 
 /* main functions */
 void	shell_init(t_minishell *ms, char **envp);
@@ -128,19 +136,38 @@ void	update_quote_status(char cur_char, char *quote_status);
 void	free_all(t_minishell *ms);
 
 
-/* parsing */
-//void	parser(t_minishell *ms);
+/* exit */
+void	ft_exit(t_token *token);
+int		is_numeric(char *str);
 
 /* echo */
 void	echo(t_token *token);
 
 /* export */
 
-/* cd */
+/* env */
+void	set_env(char ***env_var);
+void	ft_env(t_minishell *ms);
+
+
+int		ft_find_index_env(const char *name, char **envp_copy);
+bool	valid_name(const char *name);
+char	*ft_getenv(const char *name, char **envp_copy);
+
+/* expander */
+char	**expander(char **line_elem, char **envp_copy);
+char	*process_env_var(char *arg, char **envp_copy);
+int		handle_env_var(char **arg, char **envp_copy, int i);
+char	*ft_get_env_name(char *arg, int *i, int env_start_ind);
+int		replace_env_var(char **input, int start, int end, char *env_var);
+
 
 
 /* quotes */
 bool	open_quotes(char *str);
+void	quote_status(char act_char, char *quote);
+char	*rm_quotes(char *str);
+
 
 /* syntax */
 void	syntax_error(char *token);
@@ -148,6 +175,7 @@ bool	empty_input(char *in);
 bool	syntax_ok(char *in);
 bool	is_pipe(int c);
 bool	is_redir(int c);
+
 /* syntax utils */
 bool	many_redir(char **in_syntaxed, int i, int len, int nb_redir);
 bool	same_redir(char cur_redir, char prev_redir);
@@ -177,8 +205,28 @@ void	history_init(void);
 /* exec */
 void	executionner(t_token *token, t_minishell *ms);
 void	builtins(t_token *token, t_minishell *ms);
+int	external(t_token *token, t_minishell *ms);
 
 /* childs */
 int	childable(t_token *token);
+void	make_child(t_token *token, t_minishell *ms);
+void	check_infile(t_token *token, t_minishell *ms);
+void	check_cmd_validity(t_token *token, t_minishell *ms);
+void	set_dups(t_token *token);
+void	clean_up(t_token *token, t_minishell *ms);
+
+/* redirection */
+void	append_redir_init(t_token *token);
+void	close_redir_fd(t_token *token);
+void	output_redir_init(t_token *token);
+void	heredoc_redir_init(t_token *token);
+void	heredoc_pipe_init(int **heredoc_pipe);
+void	input_redir_init(t_token *token);
+void	redir_init(t_token *token);
+
+/* path */
+void	init_path_tokens(t_token *token, char **envp_cpy);
+int		search_cmd_in_path(char **path_arr, t_token *token);
+int		init_cmd_path(t_token *token, char **envp_cpy);
 
 #endif

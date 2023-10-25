@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:37:01 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/11 14:52:00 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/10/25 09:54:21 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,18 @@ void	update_quote_status(char cur_char, char *quote_status)
 		*quote_status = cur_char;
 	else if (cur_char == *quote_status)
 		*quote_status = 0;
+}
+
+int	is_builtin(t_token *token)
+{
+	if (ft_strncmp(token->commands[0], "echo", 5) == 0
+		|| ft_strncmp(token->commands[0], "cd", 3) == 0
+		|| ft_strncmp(token->commands[0], "pwd", 4) == 0
+		|| ft_strncmp(token->commands[0], "export", 7) == 0
+		|| ft_strncmp(token->commands[0], "unset", 6) == 0
+		|| ft_strncmp(token->commands[0], "env", 4) == 0
+		|| ft_strncmp(token->commands[0], "exit", 5) == 0)
+		return (1);
+	else
+		return (0);
 }
