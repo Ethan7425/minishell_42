@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 10:02:07 by etbernar          #+#    #+#             */
-/*   Updated: 2023/10/25 14:01:37 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:05:47 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,31 @@ int	childable(t_token *token)
 
 void	make_child(t_token *token, t_minishell *ms)
 {
+	printf("child\n");
 	while (token)
 	{
+		printf("token\n");
 		token->pid = fork();
 		if (token->pid < 0)
 			fatal_error("Error with fork()");
+		printf("token2\n");
 		if (token->pid == 0)
 		{
+			printf("check\n");
 			check_infile(token, ms);
+			printf("check1\n");
 			check_cmd_validity(token, ms);
+			printf("check2\n");
 			set_dups(token);
+			printf("check3\n");
 			clean_up(token, ms);
+			printf("check4\n");
 			if (token->builtin)
 				builtins(token, ms);
 			else
 				external(token, ms);
 		}
+		printf("out token\n");
 		token = token->next;
 	}
 }
@@ -66,14 +75,18 @@ void	check_infile(t_token *token, t_minishell *ms)
 
 void	check_cmd_validity(t_token *token, t_minishell *ms)
 {
+	printf("valid\n");
 	if (!token->valid_cmd && !token->builtin)
 	{
+		printf("in \n");
 		if (ft_find_index_env("PATH", ms->envp_copy) == -1)
-			printf("minishell: %s: No such file or directory 2 \n",
+			printf("minishell: %s: No such file or directory \n",
 				token->commands[0]);
 		else
 			printf("minishell: %s: command not found\n", token->commands[0]);
+		printf("before exit \n");
 		exit(127);
+		printf("exited\n");
 	}
 }
 

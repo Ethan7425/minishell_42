@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 10:23:19 by etbernar          #+#    #+#             */
-/*   Updated: 2023/09/11 14:52:27 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/10/27 19:07:10 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ char	**lexer(char const *str)
 	int		word_nb_cpt;
 	int		nb_args;
 	char	**splited;
-
 	if (!str)
 		return (NULL);
 	nb_args = count_arg(str);
@@ -89,8 +88,9 @@ char	**lexer(char const *str)
 
 void	word_nb_increase(const char *str, int i, int *word_nb)
 {
-	if ((i > 0 && (is_space(str[i]) || is_redir_pipe(str[i]))
-			&& !is_space(str[i - 1]) && !is_redir_pipe(str[i - 1])))
+	if ((i > 0 && is_space(str[i]) && !is_space(str[i - 1])
+			&& !is_redir_pipe(str[i - 1]))
+		|| is_redir_pipe(str[i]))
 	{
 		(*word_nb)++;
 		if (i > 0 && is_redir_pipe(str[i]) && !is_redir_pipe(str[i - 1])

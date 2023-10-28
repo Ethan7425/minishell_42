@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:36:23 by etbernar          #+#    #+#             */
-/*   Updated: 2023/10/25 14:00:38 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:12:13 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,20 @@ int	main(int argc, char **argv, char **envp)
 		// Clean up
 		free_all(&ms);
 	}
+	ft_free_char_2d(ms.envp_copy);
 	free_all(&ms);
-	// ft_free_char_2d(ms);
 	return (0);
 }
 
 void	shell_init(t_minishell *ms, char **envp)
 {
 	ms->envp_copy = ft_arrdup(envp);
-	g_var = 0;
-	history_init();
 	termios_init();
+	history_init();
+	g_var = 0;
+	ms->prompt = NULL;
+	ms->format_prompt = NULL;
 	ms->tokens_nb = 0;
-	ms->format_prompt = 0;
+	ms->token = NULL;
+	ms->pipe_fd = NULL;
 }

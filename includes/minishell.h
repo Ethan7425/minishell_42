@@ -6,12 +6,11 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/10/25 13:02:19 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:17:26 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
-
 # define MINISHELL_H
 
 # include <stdio.h>

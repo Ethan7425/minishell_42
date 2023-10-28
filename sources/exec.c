@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 10:34:43 by etbernar          #+#    #+#             */
-/*   Updated: 2023/10/25 10:09:28 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:43:03 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 void	executionner(t_token *token, t_minishell *ms)
 {
+	printf("exec\n");
 	init_path_tokens(ms->token, ms->envp_copy);
+	printf("exec2\n");
 	redir_init(token);
+	printf("exec3\n");
 	if (!childable(token))
 		builtins(token, ms);
+
 	else
 		make_child(token, ms);
 		//printf("child");
