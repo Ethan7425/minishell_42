@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/10/27 16:17:26 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:19:38 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,8 @@ void	check_infile(t_token *token, t_minishell *ms);
 void	check_cmd_validity(t_token *token, t_minishell *ms);
 void	set_dups(t_token *token);
 void	clean_up(t_token *token, t_minishell *ms);
+void	wait_children(t_token *token);
+
 
 /* redirection */
 void	append_redir_init(t_token *token);

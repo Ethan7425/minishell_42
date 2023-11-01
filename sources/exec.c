@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 10:34:43 by etbernar          #+#    #+#             */
-/*   Updated: 2023/10/27 16:43:03 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:58:58 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 void	executionner(t_token *token, t_minishell *ms)
 {
-	printf("exec\n");
 	init_path_tokens(ms->token, ms->envp_copy);
-	printf("exec2\n");
 	redir_init(token);
-	printf("exec3\n");
 	if (!childable(token))
 		builtins(token, ms);
 
 	else
 		make_child(token, ms);
+	clean_up(token, ms);
+	wait_children(token);
 		//printf("child");
 		
 }
@@ -63,4 +62,20 @@ int	external(t_token *token, t_minishell *ms)
 		printf("minishell: %s: command not found\n", token->commands[0]);
 	}
 	exit(127);
+}
+
+void	wait_children(t_token *token)
+{
+	int	status;
+
+	while (token)
+	{
+		waitpid(token->pid, &status, 0);
+		if (WIFEXITED(status))
+		{
+			status = WEXITSTATUS(status);
+			g_var = status;
+		}
+		token = token->next;
+	}
 }
