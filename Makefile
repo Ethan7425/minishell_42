@@ -6,7 +6,7 @@
 #    By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 11:29:32 by etbernar          #+#    #+#              #
-#    Updated: 2023/10/25 12:57:54 by etbernar         ###   ########.fr        #
+#    Updated: 2023/11/02 09:59:54 by etbernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,10 @@ SRCS_LIST	=	main.c \
 				path.c \
 				env.c \
 				expander.c \
-				
+				# pwd.c \
+				# cd.c \
+				# export.c \
+
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
 OBJS		=	${addprefix ${OBJS_DIR}, ${OBJS_LIST}}
