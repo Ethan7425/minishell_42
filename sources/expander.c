@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:48:06 by etbernar          #+#    #+#             */
-/*   Updated: 2023/10/25 13:02:12 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:16:17 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,17 +93,17 @@ int	handle_env_var(char **arg, char **envp_copy, int i)
 	return (i);
 }
 
-char	**expander(char **line_elem, char **envp_copy)
+char	**expander(char **tokens, char **envp_copy)
 {
 	int		i;
 
 	i = 0;
-	while (line_elem && line_elem[i])
+	while (tokens && tokens[i])
 	{	
-		line_elem[i] = process_env_var(line_elem[i], envp_copy);
-		line_elem[i] = rm_quotes(line_elem[i]);
+		tokens[i] = process_env_var(tokens[i], envp_copy);
+		tokens[i] = rm_quotes(tokens[i]);
 		i++;
 	}
-	return (line_elem);
+	return (tokens);
 }
 

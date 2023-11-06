@@ -6,7 +6,7 @@
 /*   By: etbernar <etbernar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:59:28 by etbernar          #+#    #+#             */
-/*   Updated: 2023/10/31 17:19:38 by etbernar         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:16:32 by etbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@
 int		g_var;
 
 //STRUCTS
-
-//TODO : env struct
 
 struct	s_token;
 
@@ -94,9 +92,8 @@ typedef struct s_redir
 
 typedef struct s_token
 {
-	int			buitlins_cmd;
+	int				buitlins_cmd;
 	char			**commands;
-	//char			*value;
 	int 			valid_cmd;
 	int				token_id;
 	int				builtin;
@@ -154,7 +151,7 @@ bool	valid_name(const char *name);
 char	*ft_getenv(const char *name, char **envp_copy);
 
 /* expander */
-char	**expander(char **line_elem, char **envp_copy);
+char	**expander(char **tokens, char **envp_copy);
 char	*process_env_var(char *arg, char **envp_copy);
 int		handle_env_var(char **arg, char **envp_copy, int i);
 char	*ft_get_env_name(char *arg, int *i, int env_start_ind);
@@ -229,5 +226,15 @@ void	redir_init(t_token *token);
 void	init_path_tokens(t_token *token, char **envp_cpy);
 int		search_cmd_in_path(char **path_arr, t_token *token);
 int		init_cmd_path(t_token *token, char **envp_cpy);
+
+void	ft_pwd(void);
+void	ft_cd(char ***env_var, char **str);
+
+/* export */
+int	is_in_env2(char **env_var, const char *var);
+void	export_process(char ***env_var, char *var);
+int	check_var(char *var);
+void	print_export(char ***env_var);
+void	ft_export(char ***env_var, char **var);
 
 #endif
